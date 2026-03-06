@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>Premium IKEA Showroom</title>
+
+<script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+
+</head>
+
+<body>
+
+<a-scene>
+
+<!-- ======================= -->
+<!-- LOAD GLB MODELS -->
+<!-- ======================= -->
+
+<a-assets>
+
+<a-asset-item id="couch" src="models/Couch Small.glb"></a-asset-item>
+<a-asset-item id="armchair" src="models/Armchair.glb"></a-asset-item>
+<a-asset-item id="bedDouble" src="models/Bed Double.glb"></a-asset-item>
+<a-asset-item id="bunkBed" src="models/Bunk Bed.glb"></a-asset-item>
+<a-asset-item id="kitchenCounter" src="models/Kitchen Cooktop and Counter.glb"></a-asset-item>
+<a-asset-item id="kitchen" src="models/Kitchen.glb"></a-asset-item>
+<a-asset-item id="cabinet" src="models/Butch's Place - Cabinets.glb"></a-asset-item>
+
+</a-assets>
+
+
+<!-- SKY -->
+<a-sky color="#e8e8e6"></a-sky>
+
+<!-- CAMERA -->
+<a-entity position="0 1.7 18">
+<a-camera wasd-controls look-controls></a-camera>
+</a-entity>
+
+<!-- LIGHT -->
+<a-light type="ambient" intensity="0.45"></a-light>
+<a-light type="directional" position="0 8 5" intensity="0.5"></a-light>
+
+
+<!-- FLOOR -->
+<a-plane rotation="-90 0 0" width="90" height="90" color="#b88a5a"></a-plane>
+
+<!-- CEILING -->
+<a-plane rotation="90 0 0" position="0 6 0" width="90" height="90" color="#f5f5f3"></a-plane>
+
+
+<!-- ================================================= -->
+<!-- IKEA BACK WALL -->
+<!-- ================================================= -->
+
+<a-box position="0 3 -40" width="90" height="6" depth="1" color="#6b0f1a"></a-box>
+
+<a-box position="0 4 -39.5" width="10" height="2.5" depth="0.2" color="#0051ba"></a-box>
+
+<a-text value="IKEA" color="#ffd700" align="center" position="0 4 -39.3" width="12"></a-text>
+
+
+
+<!-- ================================================= -->
+<!-- LIVING ROOM SECTION -->
+<!-- ================================================= -->
+
+<a-box position="-20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box>
+<a-box position="-9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+<a-box position="-31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+
+<a-plane rotation="-90 0 0"
+position="-20 0.01 -10"
+width="14"
+height="10"
+color="#d6d3ce">
+</a-plane>
+
+<!-- Couch -->
+<a-entity
+gltf-model="#couch"
+position="-22 0 -10"
+rotation="0 180 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+<!-- Armchair -->
+<a-entity
+gltf-model="#armchair"
+position="-16 0 -11"
+rotation="0 210 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+
+<!-- Hanging Board -->
+
+<a-cylinder position="-20 5 -18" radius="0.02" height="1.5" color="#333"></a-cylinder>
+
+<a-box position="-20 4.2 -18" width="4" height="1" depth="0.2" color="#333"></a-box>
+
+<a-text
+value="LIVING ROOM"
+align="center"
+color="white"
+position="-20 4.2 -17.8"
+width="6">
+</a-text>
+
+
+
+<!-- ================================================= -->
+<!-- BEDROOM SECTION -->
+<!-- ================================================= -->
+
+<a-box position="20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box>
+
+<a-box position="31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+
+<a-box position="9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+
+<a-plane rotation="-90 0 0"
+position="20 0.01 -10"
+width="14"
+height="10"
+color="#dcd6f7">
+</a-plane>
+
+
+<!-- Double Bed -->
+<a-entity
+gltf-model="#bedDouble"
+position="18 0 -10"
+rotation="0 90 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+<!-- Bunk Bed -->
+<a-entity
+gltf-model="#bunkBed"
+position="25 0 -10"
+rotation="0 90 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+
+<!-- Hanging Board -->
+
+<a-cylinder position="20 5 -18" radius="0.02" height="1.5" color="#333"></a-cylinder>
+
+<a-box position="20 4.2 -18" width="4" height="1" depth="0.2" color="#333"></a-box>
+
+<a-text
+value="BEDROOM"
+align="center"
+color="white"
+position="20 4.2 -17.8"
+width="6">
+</a-text>
+
+
+
+<!-- ================================================= -->
+<!-- KITCHEN SECTION -->
+<!-- ================================================= -->
+
+<a-box position="0 2 18" width="30" height="4" depth="1" color="#5a0f1b"></a-box>
+
+<a-box position="-15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
+
+<a-box position="15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
+
+<a-plane rotation="-90 0 0"
+position="0 0.01 18"
+width="20"
+height="12"
+color="#d1d5db">
+</a-plane>
+
+
+<!-- Kitchen Counter -->
+<a-entity
+gltf-model="#kitchenCounter"
+position="0 0 20"
+rotation="0 180 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+<!-- Kitchen Unit -->
+<a-entity
+gltf-model="#kitchen"
+position="7 0 24"
+rotation="0 180 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+<!-- Cabinets -->
+<a-entity
+gltf-model="#cabinet"
+position="-7 0 24"
+rotation="0 180 0"
+scale="1.5 1.5 1.5">
+</a-entity>
+
+
+<!-- Hanging Board -->
+
+<a-cylinder position="0 5 12" radius="0.02" height="1.5" color="#333"></a-cylinder>
+
+<a-box position="0 4.2 12" width="4" height="1" depth="0.2" color="#333"></a-box>
+
+<a-text
+value="KITCHEN"
+align="center"
+color="white"
+position="0 4.2 12.2"
+width="6">
+</a-text>
+
+
+</a-scene>
+
+</body>
+</html>
