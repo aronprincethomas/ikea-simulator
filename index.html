@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -8,28 +9,25 @@
 
 <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
 
-<!-- Joystick / movement controls -->
+<!-- Movement / joystick support -->
+
 <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
 
 </head>
 
 <body>
 
-<a-scene>
+<a-scene vr-mode-ui="enabled: true">
 
 <!-- ======================= -->
+
 <!-- ASSETS -->
+
 <!-- ======================= -->
 
 <a-assets>
 
-<a-asset-item id="couch" src="models/Couch Small.glb"></a-asset-item>
-<a-asset-item id="armchair" src="models/Armchair.glb"></a-asset-item>
-<a-asset-item id="bedDouble" src="models/Bed Double.glb"></a-asset-item>
-<a-asset-item id="bunkBed" src="models/Bunk Bed.glb"></a-asset-item>
-<a-asset-item id="kitchenCounter" src="models/Kitchen Cooktop and Counter.glb"></a-asset-item>
-<a-asset-item id="kitchen" src="models/Kitchen.glb"></a-asset-item>
-<a-asset-item id="cabinet" src="models/Butch's Place - Cabinets.glb"></a-asset-item>
+<a-asset-item id="couch" src="models/Couch Small.glb"></a-asset-item> <a-asset-item id="armchair" src="models/Armchair.glb"></a-asset-item> <a-asset-item id="bedDouble" src="models/Bed Double.glb"></a-asset-item> <a-asset-item id="bunkBed" src="models/Bunk Bed.glb"></a-asset-item> <a-asset-item id="kitchenCounter" src="models/Kitchen Cooktop and Counter.glb"></a-asset-item> <a-asset-item id="kitchen" src="models/Kitchen.glb"></a-asset-item> <a-asset-item id="cabinet" src="models/Butch's Place - Cabinets.glb"></a-asset-item>
 
 </a-assets>
 
@@ -38,29 +36,41 @@
 <a-sky color="#e8e8e6"></a-sky>
 
 <!-- ======================= -->
-<!-- CAMERA RIG WITH JOYSTICK -->
+
+<!-- VR PLAYER RIG -->
+
 <!-- ======================= -->
 
 <a-entity id="rig"
 position="0 0 18"
-movement-controls="speed:0.18">
+movement-controls="controls: gamepad, keyboard; speed:0.2">
 
-<a-entity camera
-position="0 1.7 0"
-look-controls>
+```
+<!-- Camera -->
+<a-entity camera position="0 1.7 0" look-controls>
+    <a-cursor color="black"></a-cursor>
+</a-entity>
 
-<a-cursor color="black"></a-cursor>
+<!-- Left controller -->
+<a-entity
+    laser-controls="hand: left"
+    oculus-touch-controls="hand: left">
+</a-entity>
+
+<!-- Right controller -->
+<a-entity
+    laser-controls="hand: right"
+    oculus-touch-controls="hand: right">
+</a-entity>
+```
 
 </a-entity>
 
-</a-entity>
-
-<!-- VR CONTROLLERS -->
-
-<a-entity laser-controls="hand: left"></a-entity>
-<a-entity laser-controls="hand: right"></a-entity>
+<!-- ======================= -->
 
 <!-- LIGHTING -->
+
+<!-- ======================= -->
 
 <a-light type="ambient" intensity="0.5"></a-light>
 
@@ -68,14 +78,17 @@ look-controls>
 position="0 8 5"
 intensity="0.6"></a-light>
 
+<!-- ======================= -->
+
 <!-- FLOOR -->
+
+<!-- ======================= -->
 
 <a-plane
 rotation="-90 0 0"
 width="90"
 height="90"
-color="#b88a5a">
-</a-plane>
+color="#b88a5a"> </a-plane>
 
 <!-- CEILING -->
 
@@ -84,30 +97,33 @@ rotation="90 0 0"
 position="0 6 0"
 width="90"
 height="90"
-color="#f5f5f3">
-</a-plane>
+color="#f5f5f3"> </a-plane>
 
 <!-- ======================= -->
+
 <!-- CEILING LIGHTS -->
+
 <!-- ======================= -->
 
 <a-entity position="-20 5.7 -10">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6"></a-sphere>
+<a-sphere radius="0.4" color="#fff3d6"></a-sphere>
 <a-light type="point" intensity="1.5"></a-light>
 </a-entity>
 
 <a-entity position="20 5.7 -10">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6"></a-sphere>
+<a-sphere radius="0.4" color="#fff3d6"></a-sphere>
 <a-light type="point" intensity="1.5"></a-light>
 </a-entity>
 
 <a-entity position="0 5.7 18">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6"></a-sphere>
+<a-sphere radius="0.4" color="#fff3d6"></a-sphere>
 <a-light type="point" intensity="1.5"></a-light>
 </a-entity>
 
 <!-- ======================= -->
+
 <!-- SIDE WALLS -->
+
 <!-- ======================= -->
 
 <a-box position="-40 2 0"
@@ -123,7 +139,9 @@ depth="90"
 color="#dddddd"></a-box>
 
 <!-- ======================= -->
+
 <!-- IKEA BACK WALL -->
+
 <!-- ======================= -->
 
 <a-box
@@ -131,24 +149,21 @@ position="0 3 -40"
 width="90"
 height="6"
 depth="1"
-color="#6b0f1a">
-</a-box>
+color="#6b0f1a"> </a-box>
 
 <a-box
 position="0 4 -39.5"
 width="10"
 height="2.5"
 depth="0.2"
-color="#0051ba">
-</a-box>
+color="#0051ba"> </a-box>
 
 <a-text
 value="IKEA"
 color="#ffd700"
 align="center"
 position="0 4 -39.3"
-width="12">
-</a-text>
+width="12"> </a-text>
 
 <!-- WELCOME BOARD -->
 
@@ -157,16 +172,14 @@ position="0 1.5 -39.3"
 width="10"
 height="1.5"
 depth="0.2"
-color="#0051ba">
-</a-box>
+color="#0051ba"> </a-box>
 
 <a-text
 value="WELCOME TO THE IKEA SHOWROOM"
 align="center"
 color="white"
 position="0 1.5 -39.1"
-width="14">
-</a-text>
+width="14"> </a-text>
 
 <!-- MINI MAP -->
 
@@ -185,8 +198,7 @@ width="5"></a-text>
 
 <!-- PLANTS -->
 
-<a-cylinder position="-5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
-<a-cylinder position="5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
+<a-cylinder position="-5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder> <a-cylinder position="5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
 
 <!-- WALK PATH -->
 
@@ -198,119 +210,70 @@ height="35"
 color="#e6e6e6"></a-plane>
 
 <!-- ======================= -->
-<!-- LIVING ROOM PARTITION -->
+
+<!-- LIVING ROOM -->
+
 <!-- ======================= -->
 
-<a-box position="-20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box>
-<a-box position="-9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
-<a-box position="-31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+<a-box position="-20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box> <a-box position="-9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box> <a-box position="-31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
 
 <a-entity
 gltf-model="#couch"
 position="-22 0 -10"
 rotation="0 180 0"
-scale="1.5 1.5 1.5">
-</a-entity>
+scale="1.5 1.5 1.5"> </a-entity>
 
 <a-entity
 gltf-model="#armchair"
 position="-16 0 -11"
 rotation="0 210 0"
-scale="1.5 1.5 1.5">
-</a-entity>
-
-<!-- Living room board -->
-
-<a-cylinder position="-20 5.6 -18" radius="0.02" height="1.5" color="#333"></a-cylinder>
-
-<a-box position="-20 4.8 -18" width="4" height="1" depth="0.2" color="#333"></a-box>
-
-<a-text
-value="LIVING ROOM"
-align="center"
-color="white"
-position="-20 4.8 -17.8"
-width="6">
-</a-text>
+scale="1.5 1.5 1.5"> </a-entity>
 
 <!-- ======================= -->
-<!-- BEDROOM PARTITION -->
+
+<!-- BEDROOM -->
+
 <!-- ======================= -->
 
-<a-box position="20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box>
-<a-box position="31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
-<a-box position="9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+<a-box position="20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box> <a-box position="31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box> <a-box position="9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
 
 <a-entity
 gltf-model="#bedDouble"
 position="18 0 -10"
 rotation="0 90 0"
-scale="1.5 1.5 1.5">
-</a-entity>
+scale="1.5 1.5 1.5"> </a-entity>
 
 <a-entity
 gltf-model="#bunkBed"
 position="25 0 -10"
 rotation="0 90 0"
-scale="1.5 1.5 1.5">
-</a-entity>
-
-<!-- Bedroom board -->
-
-<a-cylinder position="20 5.6 -18" radius="0.02" height="1.5" color="#333"></a-cylinder>
-
-<a-box position="20 4.8 -18" width="4" height="1" depth="0.2" color="#333"></a-box>
-
-<a-text
-value="BEDROOM"
-align="center"
-color="white"
-position="20 4.8 -17.8"
-width="6">
-</a-text>
+scale="1.5 1.5 1.5"> </a-entity>
 
 <!-- ======================= -->
-<!-- KITCHEN PARTITION -->
+
+<!-- KITCHEN -->
+
 <!-- ======================= -->
 
-<a-box position="0 2 18" width="30" height="4" depth="1" color="#5a0f1b"></a-box>
-<a-box position="-15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
-<a-box position="15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
+<a-box position="0 2 18" width="30" height="4" depth="1" color="#5a0f1b"></a-box> <a-box position="-15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box> <a-box position="15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
 
 <a-entity
 gltf-model="#kitchenCounter"
 position="0 0 20"
 rotation="0 180 0"
-scale="1.5 1.5 1.5">
-</a-entity>
+scale="1.5 1.5 1.5"> </a-entity>
 
 <a-entity
 gltf-model="#kitchen"
 position="7 0 24"
 rotation="0 180 0"
-scale="1.5 1.5 1.5">
-</a-entity>
+scale="1.5 1.5 1.5"> </a-entity>
 
 <a-entity
 gltf-model="#cabinet"
 position="-7 0 24"
 rotation="0 180 0"
-scale="1.5 1.5 1.5">
-</a-entity>
-
-<!-- Kitchen board -->
-
-<a-cylinder position="0 5.6 12" radius="0.02" height="1.5" color="#333"></a-cylinder>
-
-<a-box position="0 4.8 12" width="4" height="1" depth="0.2" color="#333"></a-box>
-
-<a-text
-value="KITCHEN"
-align="center"
-color="white"
-position="0 4.8 12.2"
-width="6">
-</a-text>
+scale="1.5 1.5 1.5"> </a-entity>
 
 </a-scene>
 
