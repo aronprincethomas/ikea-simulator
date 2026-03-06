@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <meta charset="utf-8">
-<title>Premium IKEA Showroom</title>
+<title>Advanced IKEA VR Showroom</title>
 
-<!-- AFRAME -->
 <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
 
-<!-- VR MOVEMENT + JOYSTICK -->
-<script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+<!-- Joystick / movement controls -->
+<script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
 
 </head>
 
@@ -18,7 +18,7 @@
 <a-scene>
 
 <!-- ======================= -->
-<!-- LOAD GLB MODELS -->
+<!-- ASSETS -->
 <!-- ======================= -->
 
 <a-assets>
@@ -33,55 +33,51 @@
 
 </a-assets>
 
-
 <!-- SKY -->
+
 <a-sky color="#e8e8e6"></a-sky>
 
+<!-- ======================= -->
+<!-- CAMERA RIG WITH JOYSTICK -->
+<!-- ======================= -->
 
-<!-- ================================================= -->
-<!-- VR CAMERA RIG WITH JOYSTICK MOVEMENT -->
-<!-- ================================================= -->
+<a-entity id="rig"
+position="0 0 18"
+movement-controls="speed:0.18">
 
-<a-entity id="rig" position="0 1.7 18" movement-controls="speed:0.2">
+<a-entity camera
+position="0 1.7 0"
+look-controls>
 
-  <a-camera wasd-controls look-controls="pointerLockEnabled: true"></a-camera>
-
-  <!-- LEFT CONTROLLER -->
-  <a-entity
-    laser-controls="hand: left"
-    oculus-touch-controls="hand: left">
-  </a-entity>
-
-  <!-- RIGHT CONTROLLER -->
-  <a-entity
-    laser-controls="hand: right"
-    oculus-touch-controls="hand: right">
-  </a-entity>
+<a-cursor color="black"></a-cursor>
 
 </a-entity>
 
+</a-entity>
 
-<!-- GLOBAL LIGHT -->
-<a-light type="ambient" intensity="0.45"></a-light>
-<a-light type="directional" position="0 8 5" intensity="0.5"></a-light>
+<!-- VR CONTROLLERS -->
 
+<a-entity laser-controls="hand: left"></a-entity>
+<a-entity laser-controls="hand: right"></a-entity>
 
-<!-- ================================================= -->
+<!-- LIGHTING -->
+
+<a-light type="ambient" intensity="0.5"></a-light>
+
+<a-light type="directional"
+position="0 8 5"
+intensity="0.6"></a-light>
+
 <!-- FLOOR -->
-<!-- ================================================= -->
 
 <a-plane
 rotation="-90 0 0"
 width="90"
 height="90"
-color="#b88a5a"
-material="roughness:0.6; metalness:0.1">
+color="#b88a5a">
 </a-plane>
 
-
-<!-- ================================================= -->
 <!-- CEILING -->
-<!-- ================================================= -->
 
 <a-plane
 rotation="90 0 0"
@@ -91,44 +87,60 @@ height="90"
 color="#f5f5f3">
 </a-plane>
 
-
-<!-- ================================================= -->
-<!-- CEILING LIGHT GRID -->
-<!-- ================================================= -->
+<!-- ======================= -->
+<!-- CEILING LIGHTS -->
+<!-- ======================= -->
 
 <a-entity position="-20 5.7 -10">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6; emissiveIntensity:2"></a-sphere>
-<a-light type="point" intensity="1.5" distance="18"></a-light>
+<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6"></a-sphere>
+<a-light type="point" intensity="1.5"></a-light>
 </a-entity>
 
 <a-entity position="20 5.7 -10">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6; emissiveIntensity:2"></a-sphere>
-<a-light type="point" intensity="1.5" distance="18"></a-light>
+<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6"></a-sphere>
+<a-light type="point" intensity="1.5"></a-light>
 </a-entity>
 
 <a-entity position="0 5.7 18">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6; emissiveIntensity:2"></a-sphere>
-<a-light type="point" intensity="1.5" distance="18"></a-light>
+<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6"></a-sphere>
+<a-light type="point" intensity="1.5"></a-light>
 </a-entity>
 
-<a-entity position="-10 5.7 0">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6; emissiveIntensity:2"></a-sphere>
-<a-light type="point" intensity="1.3" distance="15"></a-light>
-</a-entity>
+<!-- ======================= -->
+<!-- SIDE WALLS -->
+<!-- ======================= -->
 
-<a-entity position="10 5.7 0">
-<a-sphere radius="0.4" color="#fff3d6" material="emissive:#fff3d6; emissiveIntensity:2"></a-sphere>
-<a-light type="point" intensity="1.3" distance="15"></a-light>
-</a-entity>
+<a-box position="-40 2 0"
+width="1"
+height="4"
+depth="90"
+color="#dddddd"></a-box>
 
+<a-box position="40 2 0"
+width="1"
+height="4"
+depth="90"
+color="#dddddd"></a-box>
 
-<!-- ================================================= -->
+<!-- ======================= -->
 <!-- IKEA BACK WALL -->
-<!-- ================================================= -->
+<!-- ======================= -->
 
-<a-box position="0 3 -40" width="90" height="6" depth="1" color="#6b0f1a"></a-box>
+<a-box
+position="0 3 -40"
+width="90"
+height="6"
+depth="1"
+color="#6b0f1a">
+</a-box>
 
-<a-box position="0 4 -39.5" width="10" height="2.5" depth="0.2" color="#0051ba"></a-box>
+<a-box
+position="0 4 -39.5"
+width="10"
+height="2.5"
+depth="0.2"
+color="#0051ba">
+</a-box>
 
 <a-text
 value="IKEA"
@@ -138,10 +150,15 @@ position="0 4 -39.3"
 width="12">
 </a-text>
 
-
 <!-- WELCOME BOARD -->
 
-<a-box position="0 1.5 -39.3" width="10" height="1.5" depth="0.2" color="#0051ba"></a-box>
+<a-box
+position="0 1.5 -39.3"
+width="10"
+height="1.5"
+depth="0.2"
+color="#0051ba">
+</a-box>
 
 <a-text
 value="WELCOME TO THE IKEA SHOWROOM"
@@ -151,46 +168,42 @@ position="0 1.5 -39.1"
 width="14">
 </a-text>
 
+<!-- MINI MAP -->
 
-<!-- SPOTLIGHT -->
+<a-plane
+position="0 4 10"
+width="4"
+height="2"
+color="#ffffff"></a-plane>
 
-<a-light
-type="spot"
-color="#ffffff"
-intensity="2"
-angle="40"
-penumbra="0.5"
-position="0 5 -36"
-rotation="-40 0 0">
-</a-light>
+<a-text
+value="MAP\nLiving | Bedroom | Kitchen"
+align="center"
+color="black"
+position="0 4 10.1"
+width="5"></a-text>
 
+<!-- PLANTS -->
 
-<!-- ================================================= -->
-<!-- NAVIGATION PATH -->
-<!-- ================================================= -->
+<a-cylinder position="-5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
+<a-cylinder position="5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
+
+<!-- WALK PATH -->
 
 <a-plane
 rotation="-90 0 0"
 position="0 0.01 0"
 width="2"
 height="35"
-color="#e6e6e6">
-</a-plane>
+color="#e6e6e6"></a-plane>
 
+<!-- ======================= -->
+<!-- LIVING ROOM PARTITION -->
+<!-- ======================= -->
 
-<!-- ================================================= -->
-<!-- DECORATIVE PLANTS -->
-<!-- ================================================= -->
-
-<a-cylinder position="-5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
-<a-cylinder position="5 1 5" radius="0.4" height="2" color="#2f855a"></a-cylinder>
-
-
-<!-- ================================================= -->
-<!-- LIVING ROOM -->
-<!-- ================================================= -->
-
-<a-plane rotation="-90 0 0" position="-20 0.02 -10" width="8" height="5" color="#cfcfcf"></a-plane>
+<a-box position="-20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box>
+<a-box position="-9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+<a-box position="-31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
 
 <a-entity
 gltf-model="#couch"
@@ -206,17 +219,27 @@ rotation="0 210 0"
 scale="1.5 1.5 1.5">
 </a-entity>
 
+<!-- Living room board -->
 
-<!-- ================================================= -->
-<!-- BEDROOM -->
-<!-- ================================================= -->
+<a-cylinder position="-20 5.6 -18" radius="0.02" height="1.5" color="#333"></a-cylinder>
 
-<a-plane rotation="-90 0 0"
-position="20 0.02 -10"
-width="8"
-height="5"
-color="#cfcfcf">
-</a-plane>
+<a-box position="-20 4.8 -18" width="4" height="1" depth="0.2" color="#333"></a-box>
+
+<a-text
+value="LIVING ROOM"
+align="center"
+color="white"
+position="-20 4.8 -17.8"
+width="6">
+</a-text>
+
+<!-- ======================= -->
+<!-- BEDROOM PARTITION -->
+<!-- ======================= -->
+
+<a-box position="20 2 -15" width="22" height="4" depth="1" color="#5a0f1b"></a-box>
+<a-box position="31 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
+<a-box position="9 2 -5" width="1" height="4" depth="20" color="#5a0f1b"></a-box>
 
 <a-entity
 gltf-model="#bedDouble"
@@ -232,17 +255,27 @@ rotation="0 90 0"
 scale="1.5 1.5 1.5">
 </a-entity>
 
+<!-- Bedroom board -->
 
-<!-- ================================================= -->
-<!-- KITCHEN -->
-<!-- ================================================= -->
+<a-cylinder position="20 5.6 -18" radius="0.02" height="1.5" color="#333"></a-cylinder>
 
-<a-plane rotation="-90 0 0"
-position="0 0.01 18"
-width="20"
-height="12"
-color="#d1d5db">
-</a-plane>
+<a-box position="20 4.8 -18" width="4" height="1" depth="0.2" color="#333"></a-box>
+
+<a-text
+value="BEDROOM"
+align="center"
+color="white"
+position="20 4.8 -17.8"
+width="6">
+</a-text>
+
+<!-- ======================= -->
+<!-- KITCHEN PARTITION -->
+<!-- ======================= -->
+
+<a-box position="0 2 18" width="30" height="4" depth="1" color="#5a0f1b"></a-box>
+<a-box position="-15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
+<a-box position="15 2 30" width="1" height="4" depth="24" color="#5a0f1b"></a-box>
 
 <a-entity
 gltf-model="#kitchenCounter"
@@ -265,6 +298,19 @@ rotation="0 180 0"
 scale="1.5 1.5 1.5">
 </a-entity>
 
+<!-- Kitchen board -->
+
+<a-cylinder position="0 5.6 12" radius="0.02" height="1.5" color="#333"></a-cylinder>
+
+<a-box position="0 4.8 12" width="4" height="1" depth="0.2" color="#333"></a-box>
+
+<a-text
+value="KITCHEN"
+align="center"
+color="white"
+position="0 4.8 12.2"
+width="6">
+</a-text>
 
 </a-scene>
 
